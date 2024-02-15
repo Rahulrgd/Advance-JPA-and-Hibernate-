@@ -9,7 +9,7 @@ public class Course {
 
   @Id
   @GeneratedValue
-  private int id;
+  private long id;
 
   private String name;
 
@@ -27,7 +27,7 @@ public class Course {
     this.name = name;
   }
 
-  public int getId() {
+  public long getId() {
     return id;
   }
 
