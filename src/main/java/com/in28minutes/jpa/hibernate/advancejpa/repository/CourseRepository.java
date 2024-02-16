@@ -6,8 +6,10 @@ import org.springframework.stereotype.Repository;
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Course;
 
 import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 
 @Repository
+@Transactional
 public class CourseRepository {
     
     @Autowired
@@ -15,5 +17,10 @@ public class CourseRepository {
 
     public Course findById(long id){
         return em.find(Course.class, id);
+    }
+
+    public void deleteById(long id){
+        Course course = em.find(Course.class, id);
+        em.remove(course);
     }
 }
