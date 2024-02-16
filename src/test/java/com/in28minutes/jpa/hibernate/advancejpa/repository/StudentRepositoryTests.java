@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
+import com.in28minutes.jpa.hibernate.advancejpa.entity.Passport;
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Student;
 import com.in28minutes.jpa.hibernate.advancejpa.repository.StudentRepository;
 
@@ -34,4 +35,12 @@ class StudentRepositoryTests{
 		log.info("Student -> {}", student);
 		log.info("Student Passport -> {}", student.getPassport());
 	}
+
+	@Test
+	// @Transactional
+	public void someTest() {
+		repository.someOperationToUnderstandPersistenceContext();
+	}
+
+	
 }
