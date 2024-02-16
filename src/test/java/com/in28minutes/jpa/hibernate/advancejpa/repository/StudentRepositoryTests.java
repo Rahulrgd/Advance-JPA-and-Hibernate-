@@ -37,6 +37,14 @@ class StudentRepositoryTests{
 	}
 
 	@Test
+	@Transactional
+	public void retrievePassportandAssociatedStudentDetails() {
+		Passport passport = em.find(Passport.class, 40001L);
+		log.info("Passport -> {}", passport);
+		log.info("Passport - StudentName -> {}", passport.getStudent());
+	}
+
+	@Test
 	// @Transactional
 	public void someTest() {
 		repository.someOperationToUnderstandPersistenceContext();
