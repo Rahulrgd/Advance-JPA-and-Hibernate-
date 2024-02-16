@@ -34,4 +34,18 @@ class CourseRepositoryTests{
 		assertNull(repository.findById(10002L));
 	}
 
+	@Test
+	@DirtiesContext
+	public void save_basic() {
+		// get a customer
+		Course course = repository.findById(10003L);
+		assertEquals("DevOps", course.getName());
+		// update details
+		course.setName("DevOps-Updated");
+		// check value
+		repository.save(course);
+		Course course1 = repository.findById(10003L);
+		assertEquals("DevOps-Updated", course1.getName());
+	}
+
 }
