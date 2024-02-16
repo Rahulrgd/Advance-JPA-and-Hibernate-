@@ -38,16 +38,8 @@ public class CourseRepository {
 
   public void playWithEntityManager() {
     Course course = new Course("Learn SQL Queries");
+    course.setName(null);
     em.persist(course);
-    Course course2 = new Course("Learn WebServices");
-    em.persist(course2);
-    em.flush();
-
-    course.setName("Learn SQL Queries - Updated");
-    course2.setName("Learn WebServices - Updated");
-
-    em.refresh(course);
-
     em.flush();
   }
 }
