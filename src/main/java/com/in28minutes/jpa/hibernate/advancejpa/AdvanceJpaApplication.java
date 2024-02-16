@@ -23,10 +23,6 @@ public class AdvanceJpaApplication implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    // Course course = repository.findById(10001L);
-    // log.info("Course 10001 -> {}", course);
-    // repository.deleteById(10001L);
-    // repository.save(new Course("Learn to Swim"));
     repository.playWithEntityManager();
   }
 }

@@ -38,8 +38,9 @@ public class CourseRepository {
 
   public void playWithEntityManager() {
     Course course = new Course("Learn SQL Queries");
-    course.setName(null);
     em.persist(course);
-    em.flush();
+
+    Course course2 = findById(10001L);
+    course2.setName("AWS in 100 steps - Updated");
   }
 }

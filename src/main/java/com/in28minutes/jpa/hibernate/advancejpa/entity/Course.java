@@ -1,5 +1,10 @@
 package com.in28minutes.jpa.hibernate.advancejpa.entity;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,6 +21,12 @@ public class Course {
 
   @Column(name = "fullname", nullable = false)
   private String name;
+
+  @UpdateTimestamp
+  private LocalDateTime lastUpdatedDate;
+
+  @CreationTimestamp
+  private LocalDateTime createdDate;
 
   protected Course() {}
 
