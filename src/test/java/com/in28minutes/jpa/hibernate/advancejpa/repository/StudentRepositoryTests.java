@@ -14,6 +14,7 @@ import com.in28minutes.jpa.hibernate.advancejpa.entity.Student;
 import com.in28minutes.jpa.hibernate.advancejpa.repository.StudentRepository;
 
 import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 
 @SpringBootTest
 class StudentRepositoryTests{
@@ -27,6 +28,7 @@ class StudentRepositoryTests{
 	EntityManager em;
 
 	@Test
+	@Transactional
 	public void retrieveStudentsAndPassportDetails() {
 		Student student = em.find(Student.class, 20001L);
 		log.info("Student -> {}", student);
