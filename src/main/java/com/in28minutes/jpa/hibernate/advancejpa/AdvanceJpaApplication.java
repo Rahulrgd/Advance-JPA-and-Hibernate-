@@ -26,5 +26,7 @@ public class AdvanceJpaApplication implements CommandLineRunner {
     Course course = repository.findById(10001L);
     log.info("Course 10001 -> {}", course);
     repository.deleteById(10001L);
+    repository.save(new Course("Learn to Swim"));
+    repository.save(new Course("Learn to Swim"));
   }
 }
