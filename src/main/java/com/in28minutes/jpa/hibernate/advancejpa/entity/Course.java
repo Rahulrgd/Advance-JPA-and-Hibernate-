@@ -3,8 +3,10 @@ package com.in28minutes.jpa.hibernate.advancejpa.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "CourseDetails")
 public class Course {
 
   @Id
