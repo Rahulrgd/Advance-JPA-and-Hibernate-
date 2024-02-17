@@ -52,7 +52,15 @@ public class CourseRepository {
     log.info("course.getReview() -> {}", course.getReview());
     
     // add 2 review to it
-    // course.addReview(new Review(3, "This Course is Awesome"));
+    Review review1 = new Review("3", "This Course is Awesome");
+    review1.setCourse(course);
+    course.addReview(review1);
+    Review review2 = new Review("4", "Great Course with Hands on Experience");
+    course.addReview(review2);
+    review2.setCourse(course);
+
     // save it to the database
+    em.persist(review1);
+    em.persist(review2);
   }
 }
