@@ -27,7 +27,7 @@ public class Student {
 
   @ManyToMany
   @JoinTable(
-    name = "STUDENT_COURSES",
+    name = "STUDENT_COURSE",
     joinColumns = @JoinColumn(name = "STUDENT_ID"),
     inverseJoinColumns = @JoinColumn(name = "COURSE_ID")
   )
