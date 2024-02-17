@@ -1,6 +1,8 @@
 package com.in28minutes.jpa.hibernate.advancejpa.repository;
 
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Course;
+import com.in28minutes.jpa.hibernate.advancejpa.entity.Review;
+
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
@@ -42,5 +44,15 @@ public class CourseRepository {
 
     Course course2 = findById(10001L);
     course2.setName("AWS in 100 steps - Updated");
+  }
+
+  public void addReviewForCourse(){
+    // get the course 10003
+    Course course = findById(10003L);
+    log.info("course.getReview() -> {}", course.getReview());
+    
+    // add 2 review to it
+    // course.addReview(new Review(3, "This Course is Awesome"));
+    // save it to the database
   }
 }

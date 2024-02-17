@@ -30,5 +30,6 @@ public class AdvanceJpaApplication implements CommandLineRunner {
   public void run(String... args) throws Exception {
     // repository.playWithEntityManager();
     studentRepository.saveStudentWithPassport();
+    repository.addReviewForCourse();
   }
 }
