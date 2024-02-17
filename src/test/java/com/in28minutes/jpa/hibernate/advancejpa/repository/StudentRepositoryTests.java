@@ -50,5 +50,14 @@ class StudentRepositoryTests{
 		repository.someOperationToUnderstandPersistenceContext();
 	}
 
+	@Test
+	@Transactional
+	public void retrieveStudentAndCourses() {
+		Student student = repository.findById(20001L);
+		log.info("Student -> {}", student);
+		log.info("Student Courses-> {}", student.getCourses());
+		
+	}
+
 	
 }
