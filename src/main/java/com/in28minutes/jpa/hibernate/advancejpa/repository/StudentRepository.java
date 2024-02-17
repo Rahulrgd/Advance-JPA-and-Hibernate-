@@ -1,5 +1,6 @@
 package com.in28minutes.jpa.hibernate.advancejpa.repository;
 
+import com.in28minutes.jpa.hibernate.advancejpa.entity.Course;
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Passport;
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Student;
 import jakarta.persistence.EntityManager;
@@ -64,5 +65,22 @@ public class StudentRepository {
 
     log.info("Student -> {}", student);
     log.info("Student Passport -> {}", passport);
+  }
+
+  public void insertHardCoddedStudentAndCourse(){
+    Student student = new Student("Shubham");
+    Course course = new Course("Learn Database Design in 100 steps");
+    em.persist(student);
+    em.persist(course);
+    student.addCourses(course);
+    course.addStudents(student);
+    em.persist(student);
+  }
+
+  public void insertStudentAndCourse(Student student, Course course){
+    em.persist(student);
+    em.persist(course);
+    student.addCourses(course);
+    course.addStudents(student);
   }
 }

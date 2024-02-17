@@ -2,6 +2,7 @@ package com.in28minutes.jpa.hibernate.advancejpa;
 
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Course;
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Review;
+import com.in28minutes.jpa.hibernate.advancejpa.entity.Student;
 import com.in28minutes.jpa.hibernate.advancejpa.repository.CourseRepository;
 import com.in28minutes.jpa.hibernate.advancejpa.repository.StudentRepository;
 import java.util.ArrayList;
@@ -33,9 +34,16 @@ public class AdvanceJpaApplication implements CommandLineRunner {
     // repository.playWithEntityManager();
     // studentRepository.saveStudentWithPassport();
     // repository.addHardCoddedReviewForCourse();
-    List<Review> reivews = new ArrayList<>();
-    reivews.add(new Review("3", "This Course is Awesome"));
-    reivews.add(new Review("4", "Great Course with Hands on Experience"));
-    repository.addReviewForCourse(10003L, reivews);
+
+    // List<Review> reivews = new ArrayList<>();
+    // reivews.add(new Review("3", "This Course is Awesome"));
+    // reivews.add(new Review("4", "Great Course with Hands on Experience"));
+    // repository.addReviewForCourse(10003L, reivews);
+
+    // studentRepository.insertHardCoddedStudentAndCourse();
+    studentRepository.insertStudentAndCourse(
+      new Student("Shubham"),
+      new Course("Learn Database Design in 100 steps")
+    );
   }
 }
