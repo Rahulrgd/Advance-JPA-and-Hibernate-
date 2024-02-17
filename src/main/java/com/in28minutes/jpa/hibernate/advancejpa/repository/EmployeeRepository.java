@@ -2,6 +2,8 @@ package com.in28minutes.jpa.hibernate.advancejpa.repository;
 
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Course;
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Employee;
+import com.in28minutes.jpa.hibernate.advancejpa.entity.FullTimeEmployee;
+import com.in28minutes.jpa.hibernate.advancejpa.entity.PartTimeEmployee;
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Review;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -30,7 +32,11 @@ public class EmployeeRepository {
   }
 
   // retrieve all Employee
-  public List<Employee> retrieveAllEmployee(){
-    return em.createQuery("select e from Employee e", Employee.class).getResultList();
+  public List<PartTimeEmployee> retrieveAllPartTimeEmployee(){
+    return em.createQuery("select e from PartTimeEmployee e", PartTimeEmployee.class).getResultList();
+  }
+
+  public List<FullTimeEmployee> retrieveAllFullTimeEmployee(){
+    return em.createQuery("select e from FullTimeEmployee e", FullTimeEmployee.class).getResultList();
   }
 }
