@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
@@ -42,6 +44,9 @@ public class Course {
   // @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
   @OneToMany(mappedBy = "course")
   private List<Review> review = new ArrayList<>();
+
+  @ManyToMany
+  private List<Student> students = new ArrayList<>();
 
   @UpdateTimestamp
   private LocalDateTime lastUpdatedDate;
@@ -77,6 +82,14 @@ public class Course {
 
   public void removeReview(Review review) {
     this.review.remove(review);
+  }
+
+  public List<Student> getStudents() {
+    return students;
+  }
+
+  public void addStudents(Student student) {
+    this.students.add(student);
   }
 
   @Override
