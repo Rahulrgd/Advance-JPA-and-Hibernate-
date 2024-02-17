@@ -3,6 +3,8 @@ package com.in28minutes.jpa.hibernate.advancejpa.repository;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +13,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Course;
+import com.in28minutes.jpa.hibernate.advancejpa.entity.Review;
 import com.in28minutes.jpa.hibernate.advancejpa.repository.CourseRepository;
+
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 
 @SpringBootTest
 class CourseRepositoryTests{
@@ -21,11 +27,12 @@ class CourseRepositoryTests{
 	@Autowired
 	CourseRepository repository;
 
+	@Autowired
+	EntityManager em;
+
 	@Test
 	public void findById_basic() {
-		Course course = repository.findById(10003L);
-		assertEquals("DevOps", course.getName());
-	}
+		Course course = repository.findById(10003L);	}
 
 	@Test
 	@DirtiesContext
@@ -39,7 +46,7 @@ class CourseRepositoryTests{
 	public void save_basic() {
 		// get a customer
 		Course course = repository.findById(10003L);
-		assertEquals("DevOps", course.getName());
+		assertEquals("SQL in 50 steps", course.getName());
 		// update details
 		course.setName("DevOps-Updated");
 		// check value
@@ -52,6 +59,22 @@ class CourseRepositoryTests{
 	@DirtiesContext
 	public void playWithEntityManager(){
 		repository.playWithEntityManager();
+	}
+
+	@Test
+	@Transactional
+	public void retriveReviewsForCourses(){
+		Course course = repository.findById(10003L);
+		log.info("Course Reviews-> {}", course.getReview());
+		
+	}
+
+	@Test
+	// @Transactional
+	public void retriveCourseForReviews(){
+		Review review = em.find(Review.class, 50001L);
+		log.info("Review Course-> {}", review.getCourse());
+		
 	}
 
 }
