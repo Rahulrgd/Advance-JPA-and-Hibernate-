@@ -9,8 +9,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "EmployeeType")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Employee {
 
   @Id
