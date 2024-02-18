@@ -7,6 +7,7 @@ import com.in28minutes.jpa.hibernate.advancejpa.entity.Course;
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Student;
 import com.in28minutes.jpa.hibernate.advancejpa.repository.CourseRepository;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -69,7 +70,10 @@ class JPQLTests {
       Course.class
     );
     List<Course> resultList = query.getResultList();
-    log.info("Select c from Course c where size(c.students) >= 2 -> {}", resultList);
+    log.info(
+      "Select c from Course c where size(c.students) >= 2 -> {}",
+      resultList
+    );
   }
 
   @Test
@@ -100,5 +104,48 @@ class JPQLTests {
     );
     List<Student> resultList = query.getResultList();
     log.info("Students Passport containing 1234 -> {}", resultList);
+  }
+
+  // Join = Select c, s from Course c JOIN c.students s
+  // Left Join => Select c, s from Course c LEFT JOIN c.students s
+  // Cross Join => Select c, s from Course c, Student s
+
+  @Test
+  public void jpql_join() {
+    Query query = em.createQuery(
+      "Select c, s from Course c JOIN c.students s"
+    );
+    List<Object[]> resultList = query.getResultList();
+    log.info("Result Size -> {}", resultList.size());
+
+    for(Object[] result: resultList){
+      log.info("Course{} Student{}", result[0], result[1]);
+    }
+  }
+
+  @Test
+  public void jpql_left_join() {
+    Query query = em.createQuery(
+      "Select c, s from Course c LEFT JOIN c.students s"
+    );
+    List<Object[]> resultList = query.getResultList();
+    log.info("Result Size -> {}", resultList.size());
+
+    for(Object[] result: resultList){
+      log.info("Course -> {} Student -> {}", result[0], result[1]);
+    }
+  }
+
+  @Test
+  public void jpql_cross_join() {
+    Query query = em.createQuery(
+      "Select c, s from Course c, Student s"
+    );
+    List<Object[]> resultList = query.getResultList();
+    log.info("Result Size -> {}", resultList.size());
+
+    for(Object[] result: resultList){
+      log.info("Course -> {} Student -> {}", result[0], result[1]);
+    }
   }
 }
