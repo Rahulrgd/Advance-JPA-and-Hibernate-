@@ -50,4 +50,14 @@ class JPQLTests {
     List<Course> resultList = query.getResultList();
     log.info("Select c from Course c where id>3 -> {}", resultList);
   }
+
+  @Test
+  public void jpql_courses_without_students() {
+    TypedQuery<Course> query = em.createQuery(
+      "Select c from Course c where c.students is empty",
+      Course.class
+    );
+    List<Course> resultList = query.getResultList();
+    log.info("Select c from Course c.student is empty -> {}", resultList);
+  }
 }

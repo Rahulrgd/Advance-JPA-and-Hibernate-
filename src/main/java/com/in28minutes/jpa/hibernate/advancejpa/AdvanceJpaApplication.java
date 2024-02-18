@@ -53,13 +53,15 @@ public class AdvanceJpaApplication implements CommandLineRunner {
     //   new Course("Learn Database Design in 100 steps")
     // );
 
-    employeeRepository.insertEmployee(
-      new PartTimeEmployee("Shams", new BigDecimal("50"))
-    );
-    employeeRepository.insertEmployee(
-      new FullTimeEmployee("Shaurabh", new BigDecimal("10000"))
-    );
-    log.info("All Full Time Employees -> {}", employeeRepository.retrieveAllFullTimeEmployee());
-    log.info("All Part Time Employees -> {}", employeeRepository.retrieveAllPartTimeEmployee());
+    // employeeRepository.insertEmployee(
+    //   new PartTimeEmployee("Shams", new BigDecimal("50"))
+    // );
+    // employeeRepository.insertEmployee(
+    //   new FullTimeEmployee("Shaurabh", new BigDecimal("10000"))
+    // );
+    // log.info("All Full Time Employees -> {}", employeeRepository.retrieveAllFullTimeEmployee());
+    // log.info("All Part Time Employees -> {}", employeeRepository.retrieveAllPartTimeEmployee());
+
+    
   }
 }
