@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
 
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Course;
 
@@ -42,6 +43,12 @@ class CourseSpringDataRepositoryTest{
 	public void findall_method(){
 		log.info("Courses -> {}", repository.findAll());
 		log.info("Courses Count-> {}", repository.count());
+	}
+
+	@Test
+	public void sort(){
+		Sort sort=Sort.by(Sort.Direction.DESC,"name");
+		log.info("Sorted Courses -> {}", repository.findAll(sort));
 	}
 
 }
