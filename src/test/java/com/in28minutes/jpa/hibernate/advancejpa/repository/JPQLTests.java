@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Course;
+import com.in28minutes.jpa.hibernate.advancejpa.entity.Student;
 import com.in28minutes.jpa.hibernate.advancejpa.repository.CourseRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -59,5 +60,45 @@ class JPQLTests {
     );
     List<Course> resultList = query.getResultList();
     log.info("Select c from Course c.student is empty -> {}", resultList);
+  }
+
+  @Test
+  public void jpql_courses_with_atleast_2_students() {
+    TypedQuery<Course> query = em.createQuery(
+      "Select c from Course c where size(c.students) >= 2",
+      Course.class
+    );
+    List<Course> resultList = query.getResultList();
+    log.info("Select c from Course c where size(c.students) >= 2 -> {}", resultList);
+  }
+
+  @Test
+  public void jpql_courses_ordered_by_students() {
+    TypedQuery<Course> query = em.createQuery(
+      "Select c from Course c order by size(c.students)",
+      Course.class
+    );
+    List<Course> resultList = query.getResultList();
+    log.info("Ordered by students -> {}", resultList);
+  }
+
+  @Test
+  public void jpql_courses_ordered_by_decending_students() {
+    TypedQuery<Course> query = em.createQuery(
+      "Select c from Course c order by size(c.students) desc",
+      Course.class
+    );
+    List<Course> resultList = query.getResultList();
+    log.info("Ordered by Descending students -> {}", resultList);
+  }
+
+  @Test
+  public void jpql_students_with_passport_in_a_certain_pattern() {
+    TypedQuery<Student> query = em.createQuery(
+      "Select s from Student s where s.passport.number like '%1234%'",
+      Student.class
+    );
+    List<Student> resultList = query.getResultList();
+    log.info("Students Passport containing 1234 -> {}", resultList);
   }
 }
