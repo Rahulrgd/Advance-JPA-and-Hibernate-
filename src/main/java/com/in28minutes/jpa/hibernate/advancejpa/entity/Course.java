@@ -36,6 +36,10 @@ import org.springframework.cache.annotation.EnableCaching;
       query = "select c from Course c"
     ),
     @NamedQuery(
+      name = "query_get_all_courses_join_fetch",
+      query = "select c from Course c JOIN FETCH c.students s"
+    ),
+    @NamedQuery(
       name = "query_courses_where_id>2",
       query = "Select c from Course c where id>3"
     ),
