@@ -17,11 +17,15 @@ import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 // @Table(name = "CourseDetails")
+// @EnableCaching
+@Cacheable
 @NamedQueries(
   value = {
     @NamedQuery(
