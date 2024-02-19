@@ -1,5 +1,6 @@
 package com.in28minutes.jpa.hibernate.advancejpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -9,18 +10,20 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PreRemove;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.ManyToAny;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 // @Table(name = "CourseDetails")
@@ -38,7 +41,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
     ),
   }
 )
+@SQLDelete(sql = "update course set is_deleted = true where id = ?")
+@Where(clause = "is_deleted = false")
 public class Course {
+
+  private static Logger LOGGER = LoggerFactory.getLogger(Course.class);
 
   @Id
   @GeneratedValue
@@ -60,6 +67,14 @@ public class Course {
 
   @CreationTimestamp
   private LocalDateTime createdDate;
+
+  private boolean isDeleted;
+
+  @PreRemove
+  private void preRemove() {
+    LOGGER.info("Setting isDeleted to true");
+    this.isDeleted = true;
+  }
 
   protected Course() {}
 

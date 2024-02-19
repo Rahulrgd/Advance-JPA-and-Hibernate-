@@ -1,7 +1,9 @@
 package com.in28minutes.jpa.hibernate.advancejpa.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Course;
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Review;
@@ -30,6 +32,7 @@ class CourseRepositoryTests {
   @Test
   public void findById_basic() {
     Course course = repository.findById(10003L);
+    log.info("Course -> {}", course);
   }
 
   @Test
@@ -46,6 +49,7 @@ class CourseRepositoryTests {
   public void deleteById_basic() {
     repository.deleteById(10002L);
     assertNull(repository.findById(10002L));
+    log.info("Deleted Courses -> ", repository.findById(10002L));
   }
 
   @Test

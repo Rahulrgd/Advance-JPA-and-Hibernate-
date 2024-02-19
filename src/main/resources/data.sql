@@ -1,6 +1,6 @@
-insert into course(id, fullname, created_date, last_updated_date) values(10001, 'AWS in 100 steps', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
-insert into course(id, fullname, created_date, last_updated_date) values(10002, 'MicroServices in 100 steps', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
-insert into course(id, fullname, created_date, last_updated_date) values(10003, 'SQL in 50 steps', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+insert into course(id, fullname, created_date, last_updated_date, is_deleted) values(10001, 'AWS in 100 steps', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false);
+insert into course(id, fullname, created_date, last_updated_date, is_deleted) values(10002, 'MicroServices in 100 steps', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false);
+insert into course(id, fullname, created_date, last_updated_date, is_deleted) values(10003, 'SQL in 50 steps', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), false);
 
 insert into passport(id, number) values(40001, 'E123456');
 insert into passport(id, number) values(40002, 'N123456');

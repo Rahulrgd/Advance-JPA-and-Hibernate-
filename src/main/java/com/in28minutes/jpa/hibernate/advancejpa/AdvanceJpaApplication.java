@@ -61,6 +61,7 @@ public class AdvanceJpaApplication implements CommandLineRunner {
     // );
     // log.info("All Full Time Employees -> {}", employeeRepository.retrieveAllFullTimeEmployee());
     // log.info("All Part Time Employees -> {}", employeeRepository.retrieveAllPartTimeEmployee());
+    
 
     
   }
