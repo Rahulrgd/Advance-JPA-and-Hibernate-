@@ -2,6 +2,8 @@ package com.in28minutes.jpa.hibernate.advancejpa.repository;
 
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Course;
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Review;
+import com.in28minutes.jpa.hibernate.advancejpa.entity.ReviewRating;
+
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import java.util.List;
@@ -52,8 +54,8 @@ public class CourseRepository {
     log.info("course.getReview() -> {}", course.getReview());
 
     // add 2 review to it
-    Review review1 = new Review("3", "This Course is Awesome");
-    Review review2 = new Review("4", "Great Course with Hands on Experience");
+    Review review1 = new Review(ReviewRating.FIVE, "This Course is Awesome");
+    Review review2 = new Review(ReviewRating.FIVE, "Great Course with Hands on Experience");
     review1.setCourse(course);
     course.addReview(review1);
     course.addReview(review2);
