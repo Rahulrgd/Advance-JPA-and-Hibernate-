@@ -1,6 +1,7 @@
 package com.in28minutes.jpa.hibernate.advancejpa.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -25,14 +26,17 @@ public class Student {
   @OneToOne(fetch = FetchType.LAZY)
   private Passport passport;
 
+  @Embedded
+  private Address address;
+
   @ManyToMany
   @JoinTable(
+    // joinColumn - STUDENT_ID
+    // inverseJoinColumn - COURSE_ID
     name = "STUDENT_COURSE",
     joinColumns = @JoinColumn(name = "STUDENT_ID"),
     inverseJoinColumns = @JoinColumn(name = "COURSE_ID")
   )
-  // joinColumn - STUDENT_ID
-  // inverseJoinColumn - COURSE_ID
   private List<Course> courses = new ArrayList<>();
 
   protected Student() {}
@@ -67,6 +71,14 @@ public class Student {
 
   public void addCourses(Course course) {
     this.courses.add(course);
+  }
+
+  public Address getAddress() {
+    return address;
+  }
+
+  public void setAddress(Address address) {
+    this.address = address;
   }
 
   @Override

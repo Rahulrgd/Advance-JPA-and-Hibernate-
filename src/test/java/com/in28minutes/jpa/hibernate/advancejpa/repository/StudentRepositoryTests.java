@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
+import com.in28minutes.jpa.hibernate.advancejpa.entity.Address;
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Passport;
 import com.in28minutes.jpa.hibernate.advancejpa.entity.Student;
 import com.in28minutes.jpa.hibernate.advancejpa.repository.StudentRepository;
@@ -32,6 +33,16 @@ class StudentRepositoryTests{
 	@Transactional
 	public void retrieveStudentsAndPassportDetails() {
 		Student student = em.find(Student.class, 20001L);
+		log.info("Student -> {}", student);
+		log.info("Student Passport -> {}", student.getPassport());
+	}
+
+	@Test
+	@Transactional
+	public void setAddressDetails() {
+		Student student = em.find(Student.class, 20001L);
+		student.setAddress(new Address("GulzarBagh", "Patna City", "Patna"));
+		em.flush();
 		log.info("Student -> {}", student);
 		log.info("Student Passport -> {}", student.getPassport());
 	}
